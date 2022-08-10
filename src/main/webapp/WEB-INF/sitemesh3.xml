@@ -1,0 +1,4 @@
+<sitemesh>
+    <mapping path="/*" decorator="/WEB-INF/jsp/decorator.jsp"/>
+    <include-error-pages value="true"/>
+</sitemesh>
