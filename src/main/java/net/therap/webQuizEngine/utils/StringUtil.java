@@ -8,6 +8,7 @@ import java.security.MessageDigest;
  * @since 7/18/2022
  */
 public class StringUtil {
+
     /* Applies Sha256 to a string and returns a hash. */
     public static String applySha256(String input){
         try {

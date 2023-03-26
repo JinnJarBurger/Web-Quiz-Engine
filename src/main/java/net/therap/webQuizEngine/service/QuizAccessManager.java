@@ -5,7 +5,6 @@ import net.therap.webQuizEngine.model.Action;
 import net.therap.webQuizEngine.model.Quiz;
 import net.therap.webQuizEngine.model.User;
 import net.therap.webQuizEngine.utils.SessionUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;

@@ -3,6 +3,8 @@ package net.therap.webQuizEngine.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -26,11 +28,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
 )
 public class History extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     private int score;
 
@@ -51,12 +54,12 @@ public class History extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof History)) {
+
+        if (!(obj instanceof History that)) {
             return false;
         }
-        History that =  (History) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

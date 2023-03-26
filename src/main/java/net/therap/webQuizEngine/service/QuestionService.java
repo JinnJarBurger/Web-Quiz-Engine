@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 import static net.therap.webQuizEngine.model.Action.*;
 
 /**
@@ -26,7 +24,7 @@ public class QuestionService {
     private MessageSourceAccessor msa;
 
     public Question findById(long id) {
-        return Optional.ofNullable(questionRepository.findById(id))
+        return questionRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.question")));
     }
 
@@ -39,7 +37,7 @@ public class QuestionService {
     }
 
     public Question saveOrUpdate(Question question) {
-        return questionRepository.saveOrUpdate(question);
+        return questionRepository.save(question);
     }
 
     public void remove(Question question) {

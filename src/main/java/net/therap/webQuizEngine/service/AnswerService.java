@@ -28,7 +28,7 @@ public class AnswerService {
     private MessageSourceAccessor msa;
 
     public Answer findById(long answerId) {
-        return Optional.ofNullable(answerRepository.findById(answerId))
+        return answerRepository.findById(answerId)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.not.found")));
     }
 
@@ -39,7 +39,7 @@ public class AnswerService {
     }
 
     public Answer saveOrUpdate(Answer answer) {
-        return answerRepository.saveOrUpdate(answer);
+        return answerRepository.save(answer);
     }
 
     public void remove(Answer answer) {

@@ -6,13 +6,14 @@ import org.hibernate.annotations.Fetch;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
-import static org.hibernate.annotations.FetchMode.JOIN;
 import static org.hibernate.annotations.FetchMode.SELECT;
 
 /**
@@ -49,11 +50,12 @@ import static org.hibernate.annotations.FetchMode.SELECT;
 })
 public class Quiz extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 5, max = 20)
@@ -87,12 +89,12 @@ public class Quiz extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Quiz)) {
+
+        if (!(obj instanceof Quiz that)) {
             return false;
         }
-        Quiz that = (Quiz) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

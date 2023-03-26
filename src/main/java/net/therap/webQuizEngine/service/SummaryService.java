@@ -28,11 +28,12 @@ public class SummaryService {
     private HistoryService historyService;
 
     public Summary findByUserAndQuiz(User user, Quiz quiz) {
-        return summaryRepository.findByUserAndQuiz(user, quiz);
+        return summaryRepository.findByUserAndQuiz(user, quiz)
+                .orElse(null);
     }
 
     public Summary saveOrUpdate(Summary summary) {
-        return summaryRepository.saveOrUpdate(summary);
+        return summaryRepository.save(summary);
     }
 
     public void remove(Summary summary) {
@@ -63,7 +64,8 @@ public class SummaryService {
     }
 
     private Summary getOrCreate(User user, Quiz quiz) {
-        Summary summary = summaryRepository.findByUserAndQuiz(user, quiz);
+        Summary summary = summaryRepository.findByUserAndQuiz(user, quiz)
+                .orElse(null);
 
         if (summary != null) {
             summary.setCurrentScore(0);

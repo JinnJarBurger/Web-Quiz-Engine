@@ -24,7 +24,7 @@ public class HistoryService {
     }
 
     public History saveOrUpdate(History history) {
-        return historyRepository.saveOrUpdate(history);
+        return historyRepository.save(history);
     }
 
     public void remove(History history) {
@@ -32,7 +32,7 @@ public class HistoryService {
     }
 
     public void process(Summary summary, Answer answer) {
-        historyRepository.saveOrUpdate(History.builder()
+        historyRepository.save(History.builder()
                 .score(summary.getCurrentScore())
                 .summaryLog(summary)
                 .answer(answer)

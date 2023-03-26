@@ -8,8 +8,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -31,11 +33,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
 )
 public class Question extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 10, message = "{error.size.question.quiz}")
@@ -65,12 +68,12 @@ public class Question extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Question)) {
+
+        if (!(obj instanceof Question that)) {
             return false;
         }
-        Question that = (Question) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

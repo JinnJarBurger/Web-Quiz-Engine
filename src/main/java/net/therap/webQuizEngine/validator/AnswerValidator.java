@@ -28,9 +28,5 @@ public class AnswerValidator implements Validator {
                 return;
             }
         }
-
-//        if (answer.getQuiz().getQuestions().size() != answer.getAnswers().size()) {
-//            errors.rejectValue("answers", "error.not.filled.answers");
-//        }
     }
 }

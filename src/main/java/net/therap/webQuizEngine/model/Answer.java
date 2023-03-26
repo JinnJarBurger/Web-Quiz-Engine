@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -23,11 +25,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Table(name = "answer")
 public class Answer extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     @ElementCollection
     @OrderColumn(name = "order_answer")
@@ -59,12 +62,12 @@ public class Answer extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Answer)) {
+
+        if (!(obj instanceof Answer that)) {
             return false;
         }
-        Answer that = (Answer) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

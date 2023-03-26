@@ -60,7 +60,7 @@ public class QuizService {
             quiz.setCreatedBy(SessionUtil.getLoggedInUser());
         }
 
-        return quizRepository.saveOrUpdate(quiz);
+        return quizRepository.save(quiz);
     }
 
     public void remove(Quiz quiz) {

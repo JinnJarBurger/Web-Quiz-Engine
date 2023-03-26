@@ -6,8 +6,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static jakarta.servlet.DispatcherType.ERROR;
-import static jakarta.servlet.DispatcherType.FORWARD;
 import static javax.servlet.DispatcherType.ERROR;
 import static javax.servlet.DispatcherType.FORWARD;
 
@@ -37,8 +35,8 @@ public class FilterConfig {
     }
 
     @Bean
-    public FilterRegistrationBean siteMeshFilter() {
-        FilterRegistrationBean filter = new FilterRegistrationBean<>();
+    public FilterRegistrationBean<SiteMeshFilter> siteMeshFilter() {
+        FilterRegistrationBean<SiteMeshFilter> filter = new FilterRegistrationBean<>();
         filter.setFilter(new SiteMeshFilter());
         filter.setDispatcherTypes(ERROR, FORWARD);
         filter.setOrder(3);

@@ -3,7 +3,6 @@ package net.therap.webQuizEngine.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -19,14 +18,6 @@ import javax.persistence.EntityManagerFactory;
 @Configuration
 @EnableTransactionManagement
 public class PersistenceConfig {
-
-    @Bean
-    public LocalEntityManagerFactoryBean entityManagerFactory() {
-        LocalEntityManagerFactoryBean localEmfBean = new LocalEntityManagerFactoryBean();
-        localEmfBean.setPersistenceUnitName("your_stories");
-
-        return localEmfBean;
-    }
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {

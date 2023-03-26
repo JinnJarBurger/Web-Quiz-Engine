@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.util.Date;
 import java.util.Objects;
 
@@ -49,11 +50,12 @@ import static net.therap.webQuizEngine.model.Role.*;
 })
 public class User extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(min = 2, max = 30)
@@ -96,12 +98,12 @@ public class User extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof User)) {
+
+        if (!(obj instanceof User that)) {
             return false;
         }
-        User that = (User) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override

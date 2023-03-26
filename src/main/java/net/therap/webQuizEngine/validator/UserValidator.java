@@ -57,7 +57,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("email", "error.null.user.email");
         } else if (!user.getEmail().matches(".*@.*\\..*$")) {
             errors.rejectValue("email", "error.invalid.user.email");
-        } else if (Optional.ofNullable(userRepository.findByEmail(user.getEmail())).isPresent()) {
+        } else if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             errors.rejectValue("email", "error.unique.user.email");
         }
 
@@ -76,7 +76,8 @@ public class UserValidator implements Validator {
         }
 
         User user = (User) target;
-        User persistedUser = userRepository.findByUsername(user.getUsername());
+        User persistedUser = userRepository.findByUsername(user.getUsername())
+                .orElse(null);
 
         if (isNull(persistedUser)) {
             errors.rejectValue("username", "error.wrong.credentials");

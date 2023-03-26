@@ -5,14 +5,11 @@ import net.therap.webQuizEngine.exception.NotFoundException;
 import net.therap.webQuizEngine.helper.UserHelper;
 import net.therap.webQuizEngine.model.User;
 import net.therap.webQuizEngine.repository.UserRepository;
-import net.therap.webQuizEngine.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import static net.therap.webQuizEngine.model.Role.ADMIN;
 
@@ -52,7 +49,7 @@ public class UserService {
             userHelper.calculateAge(user);
         }
 
-        return userRepository.saveOrUpdate(user);
+        return userRepository.save(user);
     }
 
     public void remove(User user) {

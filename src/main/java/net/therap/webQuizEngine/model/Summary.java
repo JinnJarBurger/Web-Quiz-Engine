@@ -7,8 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -30,11 +32,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
 )
 public class Summary extends Persistent {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = SEQUENCE)
-    private long id;
+    private Long id;
 
     @NotNull
     private int currentScore;
@@ -67,12 +70,12 @@ public class Summary extends Persistent {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Summary)) {
+
+        if (!(obj instanceof Summary that)) {
             return false;
         }
-        Summary that = (Summary) obj;
 
-        return this.getId() == that.getId();
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override
