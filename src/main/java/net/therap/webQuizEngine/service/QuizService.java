@@ -12,7 +12,6 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static net.therap.webQuizEngine.model.Action.*;
 
@@ -34,7 +33,7 @@ public class QuizService {
     }
 
     public Quiz findById(long id) {
-        return Optional.ofNullable(quizRepository.findById(id))
+        return quizRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.quiz")));
 
     }

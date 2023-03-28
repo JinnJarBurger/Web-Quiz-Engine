@@ -38,11 +38,4 @@ public class AnswerService {
         summaryService.process(user, quiz, answer);
     }
 
-    public Answer saveOrUpdate(Answer answer) {
-        return answerRepository.save(answer);
-    }
-
-    public void remove(Answer answer) {
-        answerRepository.delete(answer);
-    }
 }

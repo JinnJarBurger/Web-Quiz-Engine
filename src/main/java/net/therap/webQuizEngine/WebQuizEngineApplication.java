@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 3/9/2023
  */
 @SpringBootApplication
-public class Application {
+public class WebQuizEngineApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(WebQuizEngineApplication.class, args);
     }
 }

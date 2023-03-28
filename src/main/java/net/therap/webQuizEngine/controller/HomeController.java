@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 7/16/2022
  */
 @Controller
-@RequestMapping({"", "/", "/home", "/home.jsp"})
+@RequestMapping({"", "/", "/home", "/home.html"})
 public class HomeController {
 
     private static final String VIEW_PAGE = "home";

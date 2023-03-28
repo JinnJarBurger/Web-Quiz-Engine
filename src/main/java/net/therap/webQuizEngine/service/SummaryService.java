@@ -4,6 +4,7 @@ import net.therap.webQuizEngine.model.Answer;
 import net.therap.webQuizEngine.model.Quiz;
 import net.therap.webQuizEngine.model.Summary;
 import net.therap.webQuizEngine.model.User;
+import net.therap.webQuizEngine.repository.AnswerRepository;
 import net.therap.webQuizEngine.repository.SummaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class SummaryService {
     private SummaryRepository summaryRepository;
 
     @Autowired
-    private AnswerService answerService;
+    private AnswerRepository answerRepository;
 
     @Autowired
     private HistoryService historyService;
@@ -30,14 +31,6 @@ public class SummaryService {
     public Summary findByUserAndQuiz(User user, Quiz quiz) {
         return summaryRepository.findByUserAndQuiz(user, quiz)
                 .orElse(null);
-    }
-
-    public Summary saveOrUpdate(Summary summary) {
-        return summaryRepository.save(summary);
-    }
-
-    public void remove(Summary summary) {
-        summaryRepository.delete(summary);
     }
 
     public void process(User user, Quiz quiz, Answer answer) {
@@ -54,12 +47,12 @@ public class SummaryService {
 
         if (summary.isNew()) {
             summary.setBestScore(summary.getCurrentScore());
-        } else if (summary.getCurrentScore() > summary.getBestScore()){
+        } else if (summary.getCurrentScore() > summary.getBestScore()) {
             summary.setBestScore(summary.getCurrentScore());
         }
 
-        answerService.saveOrUpdate(answer);
-        summaryRepository.saveOrUpdate(summary);
+        answerRepository.save(answer);
+        summaryRepository.save(summary);
         historyService.process(summary, answer);
     }
 

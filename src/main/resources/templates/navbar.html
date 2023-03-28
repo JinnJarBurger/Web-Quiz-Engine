@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+<body>
+
+<div th:with="home=@{~/},
+categoriesUrl=@{~/quiz/categories},
+loginUrl=@{~/user/login},
+logoutUrl=@{~/user/logout},
+quizFormUrl=@{~/quiz},
+quizzesUrl=@{~/quiz/list},
+userQuizzesUrl=@{~/quiz/user/quizzes},
+historiesUrl=@{~/history/list}" th:fragment="navbar">
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a th:href="${home}" class="navbar-brand">
+                <div th:text="#{btn.web.quiz.engine}"></div>
+            </a>
+
+            <button type="button"
+                    class="navbar-toggler"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a th:href="${home}" class="nav-item nav-link active">
+                        <div th:text="#{btn.home}"></div>
+                    </a>
+                    <!--                    <div th:if="${user.student or user.admin}">-->
+                    <div>
+                        <a th:href="${categoriesUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.view.categories}"></div>
+                        </a>
+                    </div>
+                    <!--                    <div th:if="${user.student or user.admin}">-->
+                    <div>
+                        <a th:href="${quizzesUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.view.quizzes}"></div>
+                        </a>
+                    </div>
+                    <!--                    <div th:if="${user.teacher or user.admin}">-->
+                    <div>
+                        <a th:href="${userQuizzesUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.view.user.quizzes}"></div>
+                        </a>
+                    </div>
+                    <!--                    <div th:if="${user.student or user.admin}">-->
+                    <div>
+                        <a th:href="${historiesUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.view.user.history}"></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div th:if="${isLoggedIn}">
+                    <div class="navbar-nav ms-auto">
+                        <a th:href="${logoutUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.logout}"></div>
+                        </a>
+                    </div>
+                </div>
+                <div th:unless="${isLoggedIn}">
+                    <div class="navbar-nav ms-auto">
+                        <a th:href="${loginUrl}" class="nav-item nav-link">
+                            <div th:text="#{btn.login}"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

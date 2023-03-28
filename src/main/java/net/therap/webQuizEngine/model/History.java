@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serial;
 import java.util.Objects;
 
+import static java.util.Objects.isNull;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
@@ -46,7 +47,7 @@ public class History extends Persistent {
     private Answer answer;
 
     public boolean isNew() {
-        return getId() == 0;
+        return isNull(getId()) || getId() == 0;
     }
 
     @Override

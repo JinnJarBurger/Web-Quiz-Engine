@@ -16,7 +16,6 @@ import static net.therap.webQuizEngine.controller.UserController.USER_CMD;
  * @author mohammadhossain
  * @since 7/19/22
  */
-@Configuration
 public class AuthenticationFilter implements Filter {
 
     @Override

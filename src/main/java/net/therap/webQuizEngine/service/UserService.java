@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 import static net.therap.webQuizEngine.model.Role.ADMIN;
 
 /**
@@ -31,12 +29,12 @@ public class UserService {
 
 
     public User findById(long id) {
-        return Optional.ofNullable(userRepository.findById(id))
+        return userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.user")));
     }
 
     public User findByUsername(String username) {
-        return Optional.ofNullable(userRepository.findByUsername(username))
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.user")));
     }
 

@@ -1,13 +1,9 @@
 package net.therap.webQuizEngine.config;
 
 import net.therap.webQuizEngine.filter.AuthenticationFilter;
-import net.therap.webQuizEngine.filter.SiteMeshFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import static javax.servlet.DispatcherType.ERROR;
-import static javax.servlet.DispatcherType.FORWARD;
 
 /**
  * @author adnan
@@ -30,16 +26,6 @@ public class FilterConfig {
         );
 
         filter.setOrder(2);
-
-        return filter;
-    }
-
-    @Bean
-    public FilterRegistrationBean<SiteMeshFilter> siteMeshFilter() {
-        FilterRegistrationBean<SiteMeshFilter> filter = new FilterRegistrationBean<>();
-        filter.setFilter(new SiteMeshFilter());
-        filter.setDispatcherTypes(ERROR, FORWARD);
-        filter.setOrder(3);
 
         return filter;
     }

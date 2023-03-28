@@ -10,6 +10,7 @@ import java.io.Serial;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.Objects.isNull;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.EnumType.STRING;
@@ -81,7 +82,7 @@ public class Quiz extends Persistent {
     private User createdBy;
 
     public boolean isNew() {
-        return getId() == 0;
+        return isNull(getId()) || getId() == 0;
     }
 
     @Override

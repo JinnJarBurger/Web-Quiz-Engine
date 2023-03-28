@@ -11,6 +11,7 @@ import java.io.Serial;
 import java.util.Date;
 import java.util.Objects;
 
+import static java.util.Objects.isNull;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.SEQUENCE;
 import static javax.persistence.TemporalType.DATE;
@@ -78,7 +79,7 @@ public class User extends Persistent {
     private Role role;
 
     public boolean isNew() {
-        return getId() == 0;
+        return isNull(getId()) || getId() == 0;
     }
 
     public boolean isAdmin() {
