@@ -1,5 +1,7 @@
 package net.therap.webQuizEngine.controller;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import net.therap.webQuizEngine.constant.Url;
 import net.therap.webQuizEngine.helper.UserHelper;
 import net.therap.webQuizEngine.model.Role;
@@ -16,8 +18,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

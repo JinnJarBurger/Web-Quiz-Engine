@@ -27,12 +27,6 @@ public class UserService {
     @Autowired
     private MessageSourceAccessor msa;
 
-
-    public User findById(long id) {
-        return userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.user")));
-    }
-
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException(msa.getMessage("error.no.such.user")));
@@ -48,9 +42,5 @@ public class UserService {
         }
 
         return userRepository.save(user);
-    }
-
-    public void remove(User user) {
-        userRepository.delete(user);
     }
 }

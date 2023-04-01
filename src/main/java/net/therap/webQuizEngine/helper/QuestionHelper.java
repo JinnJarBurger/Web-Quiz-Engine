@@ -4,7 +4,6 @@ import net.therap.webQuizEngine.model.Question;
 import net.therap.webQuizEngine.service.QuestionService;
 import net.therap.webQuizEngine.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 
@@ -22,9 +21,6 @@ public class QuestionHelper {
 
     @Autowired
     private QuizService quizService;
-
-    @Autowired
-    private MessageSourceAccessor msa;
 
     public void setupReferenceData(long quizId, long questionId, ModelMap model) {
         Question question = getOrCreate(questionId);

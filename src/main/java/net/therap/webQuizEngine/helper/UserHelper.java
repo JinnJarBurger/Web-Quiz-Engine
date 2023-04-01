@@ -1,12 +1,12 @@
 package net.therap.webQuizEngine.helper;
 
+import jakarta.servlet.http.HttpSession;
 import net.therap.webQuizEngine.model.Role;
 import net.therap.webQuizEngine.model.User;
 import net.therap.webQuizEngine.utils.StringUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 
-import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;

@@ -1,12 +1,11 @@
 package net.therap.webQuizEngine.filter;
 
+import jakarta.servlet.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import net.therap.webQuizEngine.constant.Url;
 import net.therap.webQuizEngine.model.User;
-import org.springframework.context.annotation.Configuration;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static java.util.Objects.isNull;

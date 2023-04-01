@@ -24,15 +24,9 @@ public class CommonUtils implements ApplicationContextAware {
 
     public static void setupReferenceData(Action action, RedirectAttributes ra) {
         switch (action) {
-            case SAVE:
-                ra.addFlashAttribute("addMessage", msa.getMessage("success.add"));
-                break;
-            case UPDATE:
-                ra.addFlashAttribute("updateMessage", msa.getMessage("success.update"));
-                break;
-            case DELETE:
-                ra.addFlashAttribute("deleteMessage", msa.getMessage("success.delete"));
-                break;
+            case SAVE -> ra.addFlashAttribute("addMessage", msa.getMessage("success.add"));
+            case UPDATE -> ra.addFlashAttribute("updateMessage", msa.getMessage("success.update"));
+            case DELETE -> ra.addFlashAttribute("deleteMessage", msa.getMessage("success.delete"));
         }
     }
 }

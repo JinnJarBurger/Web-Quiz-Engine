@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+<div class="container" th:with="successImageUrl=@{../static/images/verifySuccessTick.png}">
+    <div class="d-flex" style="min-height: 80vh">
+        <div class="row mx-auto my-auto p-4">
+            <img class="w-25 h-25 m-auto" th:src="${successImageUrl}" alt="success">
+            <h3 class="text-center text-success" th:text="#{text.success}">
+            </h3>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,20 +1,20 @@
 package net.therap.webQuizEngine.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.util.Date;
 import java.util.Objects;
 
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.SEQUENCE;
+import static jakarta.persistence.TemporalType.DATE;
 import static java.util.Objects.isNull;
-import static javax.persistence.EnumType.STRING;
-import static javax.persistence.GenerationType.SEQUENCE;
-import static javax.persistence.TemporalType.DATE;
 import static net.therap.webQuizEngine.model.Role.*;
 
 /**

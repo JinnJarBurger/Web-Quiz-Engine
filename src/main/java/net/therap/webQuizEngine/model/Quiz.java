@@ -1,20 +1,24 @@
 package net.therap.webQuizEngine.model;
 
-import lombok.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serial;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.GenerationType.SEQUENCE;
 import static java.util.Objects.isNull;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.EnumType.STRING;
-import static javax.persistence.GenerationType.SEQUENCE;
 import static org.hibernate.annotations.FetchMode.SELECT;
 
 /**
@@ -23,7 +27,6 @@ import static org.hibernate.annotations.FetchMode.SELECT;
  */
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
@@ -32,14 +35,14 @@ import static org.hibernate.annotations.FetchMode.SELECT;
         @NamedQuery(
                 name = "Quiz.findAll",
                 query = "FROM Quiz " +
-                        "WHERE questions.size > 0 " +
+                        "WHERE questions IS NOT EMPTY " +
                         "ORDER BY created DESC"
         ),
         @NamedQuery(
                 name = "Quiz.findAllByCategory",
                 query = "FROM Quiz " +
                         "WHERE category = :category " +
-                        "AND questions.size > 0 " +
+                        "AND questions IS NOT EMPTY " +
                         "ORDER BY created DESC"
         ),
         @NamedQuery(
@@ -80,6 +83,10 @@ public class Quiz extends Persistent {
     @ManyToOne
     @JoinColumn(name = "fk_user", nullable = false)
     private User createdBy;
+
+    public Quiz() {
+        questions = new ArrayList<>();
+    }
 
     public boolean isNew() {
         return isNull(getId()) || getId() == 0;

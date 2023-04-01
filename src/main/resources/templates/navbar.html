@@ -32,26 +32,22 @@ historiesUrl=@{~/history/list}" th:fragment="navbar">
                     <a th:href="${home}" class="nav-item nav-link active">
                         <div th:text="#{btn.home}"></div>
                     </a>
-                    <!--                    <div th:if="${user.student or user.admin}">-->
-                    <div>
+                    <div th:if="${user?.student} or ${user?.admin}">
                         <a th:href="${categoriesUrl}" class="nav-item nav-link">
                             <div th:text="#{btn.view.categories}"></div>
                         </a>
                     </div>
-                    <!--                    <div th:if="${user.student or user.admin}">-->
-                    <div>
+                    <div th:if="${user?.student} or ${user?.admin}">
                         <a th:href="${quizzesUrl}" class="nav-item nav-link">
                             <div th:text="#{btn.view.quizzes}"></div>
                         </a>
                     </div>
-                    <!--                    <div th:if="${user.teacher or user.admin}">-->
-                    <div>
+                    <div th:if="${user?.teacher} or ${user?.admin}">
                         <a th:href="${userQuizzesUrl}" class="nav-item nav-link">
                             <div th:text="#{btn.view.user.quizzes}"></div>
                         </a>
                     </div>
-                    <!--                    <div th:if="${user.student or user.admin}">-->
-                    <div>
+                    <div th:if="${user?.student} or ${user?.admin}">
                         <a th:href="${historiesUrl}" class="nav-item nav-link">
                             <div th:text="#{btn.view.user.history}"></div>
                         </a>

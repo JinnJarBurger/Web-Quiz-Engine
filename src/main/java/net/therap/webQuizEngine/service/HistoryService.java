@@ -23,14 +23,6 @@ public class HistoryService {
         return historyRepository.findAllByUser();
     }
 
-    public History saveOrUpdate(History history) {
-        return historyRepository.save(history);
-    }
-
-    public void remove(History history) {
-        historyRepository.delete(history);
-    }
-
     public void process(Summary summary, Answer answer) {
         historyRepository.save(History.builder()
                 .score(summary.getCurrentScore())

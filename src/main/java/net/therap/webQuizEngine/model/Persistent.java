@@ -1,13 +1,13 @@
 package net.therap.webQuizEngine.model;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-import static javax.persistence.TemporalType.TIMESTAMP;
+import static jakarta.persistence.TemporalType.TIMESTAMP;
 
 /**
  * @author adnan

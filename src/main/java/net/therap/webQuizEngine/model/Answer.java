@@ -1,18 +1,18 @@
 package net.therap.webQuizEngine.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static jakarta.persistence.GenerationType.SEQUENCE;
 import static java.util.Objects.isNull;
-import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * @author adnan

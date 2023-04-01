@@ -1,5 +1,6 @@
 package net.therap.webQuizEngine.controller;
 
+import jakarta.validation.Valid;
 import net.therap.webQuizEngine.constant.Url;
 import net.therap.webQuizEngine.helper.AnswerHelper;
 import net.therap.webQuizEngine.model.Answer;
@@ -15,8 +16,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 import static net.therap.webQuizEngine.controller.AnswerController.ANSWER_CMD;
 

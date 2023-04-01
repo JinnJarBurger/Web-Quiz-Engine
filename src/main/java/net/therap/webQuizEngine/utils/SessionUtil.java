@@ -1,9 +1,8 @@
 package net.therap.webQuizEngine.utils;
 
+import jakarta.servlet.http.HttpSession;
 import net.therap.webQuizEngine.model.User;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpSession;
 
 import static org.springframework.web.context.request.RequestContextHolder.currentRequestAttributes;
 
