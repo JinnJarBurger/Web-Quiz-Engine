@@ -1,56 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout">
+      layout:decorate="layout/form">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title id="title">Login</title>
 </head>
 <body>
 <div th:with="signupUrl=@{~/user/signup}" layout:fragment="content">
-    <div class="row mx-auto my-auto shadow-lg p-4 w-50 bg-white rounded text-wrap">
-        <form method="post" th:object="${user}">
-            <div class="row mb-4">
-                <h2 class="text-wrap fw-normal" th:text="#{title.login}"/>
-                <hr class="mt-2 mb-3 w-100"/>
-            </div>
-
-            <div class="row mb-3">
-                <label for="username" class="ps-0 form-label" th:text="#{label.password}"></label>
-                <input id="username" type="text" class="form-control" th:field="*{username}"
-                       placeholder="Username"/>
-            </div>
-
-            <div class="row mb-3">
-                <label for="password" class="ps-0 form-label" th:text="#{label.password}"></label>
-                <input id="password" class="form-control" type="password" th:field="*{password}"
-                       placeholder="Password"/>
-
-                <ul>
-                    <li th:each="error : ${#fields.errors('username')}" th:text="${error}"
-                        class="text-danger small ps-0"/>
-                </ul>
-                <ul>
-                    <li th:each="error : ${#fields.errors('password')}" th:text="${error}"
-                        class="text-danger small ps-0"/>
-                </ul>
-            </div>
-
-            <div class="row">
-                <div class="m-0 p-0">
-                    <button type="submit"
-                            name="action"
-                            value="LOGIN"
-                            class="btn btn-success" th:text="#{btn.login}"/>
-                </div>
-            </div>
-        </form>
+    <form method="post" th:object="${user}">
+        <div class="row mb-4">
+            <h2 class="text-wrap fw-normal" th:text="#{title.login}"/>
+            <hr class="mt-2 mb-3 w-100"/>
+        </div>
 
         <div class="row mb-3">
+            <label for="username" class="ps-0 form-label" th:text="#{label.password}"></label>
+            <input id="username" type="text" class="form-control" th:field="*{username}"
+                   placeholder="Username"/>
+        </div>
+
+        <div class="row mb-3">
+            <label for="password" class="ps-0 form-label" th:text="#{label.password}"></label>
+            <input id="password" class="form-control" type="password" th:field="*{password}"
+                   placeholder="Password"/>
+
+            <ul>
+                <li th:each="error : ${#fields.errors('username')}" th:text="${error}"
+                    class="text-danger small ps-0"/>
+            </ul>
+            <ul>
+                <li th:each="error : ${#fields.errors('password')}" th:text="${error}"
+                    class="text-danger small ps-0"/>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="m-0 p-0">
+                <button type="submit"
+                        name="action"
+                        value="LOGIN"
+                        class="btn btn-success" th:text="#{btn.login}"/>
+            </div>
+        </div>
+    </form>
+
+    <div class="row mb-3">
                 <span class="p-0">
                     <th:block th:text="#{label.dont.have.account}"/>
                     <a th:href="${signupUrl}" class="ms-1 text-info text-decoration-none" th:text="#{a.signup}"/>
                 </span>
-        </div>
     </div>
 </div>
 </body>

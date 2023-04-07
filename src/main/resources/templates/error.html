@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout">
+      layout:decorate="layout/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title id="title">Error</title>
 </head>
 <body>
 <div class="container" th:with="defaultError=#{error.something.wrong}" layout:fragment="content">
