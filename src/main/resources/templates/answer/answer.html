@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Answer</title>
+</head>
+<body>
+<div class="p-5 w-50" layout:fragment="content">
+    <div class="card shadow-lg">
+        <div class="row ms-3 mt-3 me-3">
+            <small>
+                <th:block th:text="#{text.category}"/>
+                <strong class="ps-1" th:text="${answer?.quiz?.category}"/>
+            </small>
+        </div>
+
+        <div class="row m-3">
+            <h2 class="text-center fw-normal" th:text="${answer?.quiz?.title}"/>
+            <hr class="mt-2 mb-3 w-100"/>
+        </div>
+
+        <div class="row m-3">
+            <pre class="text-wrap text-break" th:text="${answer?.quiz?.description}"/>
+        </div>
+
+        <div class="row m-3">
+            <h3 class="text-center fw-normal" th:text="#{text.questions}"/>
+        </div>
+
+        <form method="post" th:object="${answer}">
+            <div class="row m-5">
+                <th:block th:each="question, i  : ${answer?.quiz?.questions}">
+                    <pre class="text-wrap text-break m-0 p-0"
+                         th:text="${i.index + 1 += '. ' += question?.description}"/>
+                    <div class="form-check ms-3 mb-3 mt-1">
+                        <th:block th:each="option, j : ${question?.options}">
+                            <input id="answers" class="form-check-input" type="radio" th:field="*{answers[${j.index}]}"
+                                   th:value="${option}"/>
+                            <label for="answers" class="form-check-label" th:text="${option}"/>
+                            <br>
+                        </th:block>
+                    </div>
+                </th:block>
+                <div class="text-danger small ps-0" th:each="error : ${#fields.errors('answers')}"></div>
+            </div>
+
+            <div class="row m-5">
+                <div class="m-0 p-0">
+                    <button class="btn btn-primary"
+                            type="submit"
+                            th:text="#{btn.submit.quiz}"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
