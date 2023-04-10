@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">History</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="d-flex" style="min-height: 80vh">
+        <div class="row shadow my-auto mx-auto ps-4 py-4">
+            <div class="row mb-3">
+                <h2 class="text-center fw-normal" th:text="#{list.history.title}"/>
+                <hr class="mt-2 mb-3 w-100"/>
+            </div>
+
+            <div class="row">
+                <table class="table table-borderless table-hover">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col" th:text="#{label.id}"/>
+                        <th scope="col" th:text="#{table.quiz.title}"/>
+                        <th scope="col" th:text="#{table.history.score}"/>
+                        <th scope="col" th:text="#{table.wrong.answers}"/>
+                        <th scope="col" th:text="#{table.best.score}"/>
+                        <th scope="col" th:text="#{table.attempted.on}"/>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="history, i : ${histories}">
+                        <th:block th:with="answerUrl=@{~/answer(quizId=${history?.answer?.quiz?.id})}">
+                            <tr>
+                                <th scope="row" th:text="${i.index + 1}"/>
+                                <td>
+                                    <a class="link-danger m-1 text-decoration-none" th:href="${answerUrl}">
+                                        <strong th:text="${history?.answer?.quiz?.title}"/>
+                                    </a>
+                                </td>
+                                <td th:text="${history?.score}"/>
+                                <td th:text="${history?.answer?.wrongAnswers?.size()}"/>
+                                <td th:text="${history?.summaryLog?.bestScore}"/>
+                                <td th:text="${#dates.format(history?.created, 'dd/MM/yyyy hh:mm:ss a')}"/>
+                            </tr>
+                        </th:block>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
