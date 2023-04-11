@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/form}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Question Form</title>
+</head>
+<body>
+<div th:with="action=${question?.new ? 'SAVE' : 'UPDATE'}" layout:fragment="content">
+    <form method="post" th:object="${question}">
+        <div class="row mb-4">
+            <h2 class="text-center fw-normal">
+                <div th:switch="${question?.new}">
+                    <th:block th:case="true" th:text="#{title.add.question}"/>
+                    <th:block th:case="false" th:text="#{title.update.question}"/>
+                </div>
+            </h2>
+            <hr class="mt-2 mb-3 w-100"/>
+        </div>
+
+        <div class="row mb-3">
+            <label for="description" class="ps-0 form-label" th:text="#{label.question}"/>
+            <input id="description" type="text" th:field="*{description}" class="form-control" th:rows="4"/>
+            <div class="text-danger small ps-0" th:each="error : ${#fields.errors('description')}"></div>
+        </div>
+
+        <div class="row mb-3">
+            <th:block th:each="option, i : ${question?.options}">
+                <label class="ps-0 form-label" th:text="${#messages.msg('label.options.' + i.index + 1)}">
+                    <input type="radio" th:field="*{options[${i.index}]}" class="form-control"
+                           th:placeholder="|Option ${i.index + 1}|"/>
+                </label>
+            </th:block>
+            <div class="text-danger small ps-0" th:each="error : ${#fields.errors('options')}"></div>
+        </div>
+
+        <div class="row mb-3">
+            <label class="ps-0 form-label" th:text="#{label.answer}">
+                <input class="form-control" th:field="*{answer}" placeholder="Answer"/>
+            </label>
+            <div class="text-danger small ps-0" th:each="error : ${#fields.errors('answer')}"></div>
+        </div>
+
+        <div class="row">
+            <button type="submit"
+                    name="action"
+                    th:value="${action}"
+                    class="btn btn-success"
+                    th:text="${#messages.msg('btn.' + #strings.toLowerCase(action))}"/>
+
+            <th:block th:if="${not question.new}" th:data-name="#{delete.confirmation}">
+                <button type="submit"
+                        name="action"
+                        value="DELETE"
+                        class="btn btn-danger"
+                        onclick="return confirm('data-name');"
+                        th:text="#{btn.delete}"/>
+            </th:block>
+        </div>
+    </form>
+</div>
+</body>
+</html>
