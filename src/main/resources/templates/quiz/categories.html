@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Categories</title>
+</head>
+<body>
+<div class="d-flex flex-column" style="min-height: 80vh">
+    <div class="my-auto mx-auto">
+        <div class="row justify-content-center fw-normal font-monospace">
+            <h2 class="text-center" th:text="#{text.categories}"/>
+            <hr class="mt-3 mb-3 w-100"/>
+        </div>
+
+        <th:block th:each="category : ${categories}" th:with="quizzesUrl=@{~/quiz/list(category=${category})}">
+            <a th:href="${quizzesUrl}" class="btn btn-outline-dark btn-rounded m-1 w-100 p-3 rounded-pill"
+               data-mdb-ripple-color="dark"
+               th:text="${category}"/>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>
