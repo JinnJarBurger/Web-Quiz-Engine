@@ -20,7 +20,7 @@
 
         <div class="row mb-3">
             <label for="description" class="ps-0 form-label" th:text="#{label.question}"/>
-            <input id="description" type="text" th:field="*{description}" class="form-control" th:rows="4"/>
+            <textarea id="description" type="text" th:field="*{description}" class="form-control" rows="4"></textarea>
             <div class="text-danger small ps-0" th:each="error : ${#fields.errors('description')}"></div>
         </div>
 

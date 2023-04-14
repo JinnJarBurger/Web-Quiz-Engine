@@ -38,8 +38,8 @@ public class QuizController {
     private static final String CATEGORIES_PAGE = "quiz/categories";
     private static final String LIST_PAGE = "quiz/list";
     private static final String FORM_PAGE = "quiz/quiz";
-    private static final String VIEW_PAGE = "quiz/viewQuiz";
-    private static final String USER_QUIZ_LIST_PAGE = "quiz/userQuizzes";
+    private static final String VIEW_PAGE = "quiz/view_quiz";
+    private static final String USER_QUIZ_LIST_PAGE = "quiz/user_quizzes";
 
     @Autowired
     private QuizService quizService;
@@ -71,7 +71,7 @@ public class QuizController {
     public String showUserQuizzes(ModelMap model) {
         quizAccessManager.checkUserQuizzesAccess();
         model.addAttribute("quizzes", quizService.findAllByUser(SessionUtil.getLoggedInUser()));
-        System.out.println(quizService.findAllByUser(SessionUtil.getLoggedInUser()));
+
         return USER_QUIZ_LIST_PAGE;
     }
 

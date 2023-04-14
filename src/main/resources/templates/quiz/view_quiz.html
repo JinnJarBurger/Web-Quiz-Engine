@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Quiz</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:if="${not empty addMessage}"
+         class="alert alert-success alert-dismissible fade show d-flex align-items-center"
+         role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"/>
+        </svg>
+        <div th:text="${addMessage}"/>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${not empty updateMessage}"
+         class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"/>
+        </svg>
+        <div th:text="${updateMessage}"/>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${not empty deleteMessage}"
+         class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"/>
+        </svg>
+        <div th:text="${deleteMessage}"/>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="container p-5"
+         th:with="quizFormUrl=@{~/quiz(quizId=${quiz?.id})}, questionUrl=@{~/question(quizId=${quiz?.id})}">
+        <div class="card shadow-lg p-3 m-3">
+            <div class="row m-3 mt-3 me-3">
+                <small th:text="#{text.category}">
+                    <strong class="ps-1" th:text="${quiz?.category}"/>
+
+                    <a th:href="${quizFormUrl}"
+                       class="float-end text-info text-decoration-none small"
+                       th:text="#{btn.edit}"/>
+                </small>
+            </div>
+
+            <div class="row m-3">
+                <h2 class="text-center fw-normal" th:text="${quiz?.title}"/>
+                <hr class="mt-2 mb-3 w-100"/>
+            </div>
+
+            <div class="row m-3">
+                <pre class="text-wrap text-break" th:text="${quiz?.description}"/>
+            </div>
+
+            <div class="row m-3">
+                <div class="m-0 p-0">
+                    <a class="btn btn-primary float-end" th:href="${questionUrl}" role="button"
+                       th:text="#{btn.add.question}"/>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <hr class="w-100 m-0 p-0"/>
+                <small class="text-center m-0 p-0"
+                       th:text="#{text.questions}"/>
+                <hr class="w-100 m-0 p-0"/>
+            </div>
+
+            <div th:each="question : ${quiz?.questions}"
+                 th:with="questionEditUrl=@{~/${questionUrl}(questionId=${question?.id})}">
+                <div class="row m-3">
+                    <div class="row">
+                        <small class="p-0">
+                            <small>
+                                <div th:text="#{text.created.on}"/>
+                                <div th:text="${#dates.format(${question?.created}, 'dd/MM/yyyy')}"/>
+                            </small>
+
+                            <a th:href="${questionEditUrl}"
+                               class="float-end text-info text-decoration-none small"
+                               th:text="#{btn.edit}"/>
+                        </small>
+                    </div>
+
+                    <div class="row">
+                        <div th:text="#{text.description}"/>
+                        <div th:text="${question?.description}"/>
+                    </div>
+
+                    <br/>
+                    <br/>
+
+                    <div class="row">
+                        <div th:text="#{text.options}"/>
+                        <br>
+                        <th:block th:each="option, i : ${question?.options}">
+                            <div th:text="${i.index + 1 += '. ' += option}"/>
+                            <br>
+                        </th:block>
+                    </div>
+
+                    <br/>
+                    <br/>
+
+                    <div class="row">
+                        <div th:text="#{text.answer}"/>
+                        <div th:text="${question?.answer}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

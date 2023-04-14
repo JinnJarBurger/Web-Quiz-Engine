@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">User Quizzes</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div th:if="${not empty deleteMessage}"
+         class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill"/>
+        </svg>
+        <div th:text="${deleteMessage}">
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="container p-5">
+        <div class="row mb-4">
+            <h2 class="text-center fw-normal" th:text="#{text.quiz.list.title}"/>
+            <hr class="mt-2 mb-3 w-100"/>
+        </div>
+
+        <div th:each="quiz : ${quizzes}" th:with="showQuizUrl=@{~/quiz(action='VIEW', quizId=${quiz?.id})}">
+            <div class="row ms-3 mt-3">
+                <small th:text="#{text.category}">
+                    <strong class="ps-1" th:text="${quiz?.category}"/>
+                </small>
+            </div>
+
+            <div class="row ms-3">
+                <small class="opacity-25">
+                    <div th:text="#{text.created.on}"/>
+                    <div th:text="${#dates.format(quiz?.created, 'dd/MM/yyyy')}"/>
+                </small>
+            </div>
+
+            <div class="row ms-3">
+                <div class="col">
+                    <small class="opacity-50">
+                        <div th:text="#{text.number.questions}"/>
+                        <div th:text="${quiz?.questions?.size()}"/>
+                    </small>
+                    <small class="opacity-50 ps-2">
+                        <div th:text="#{text.marks}"/>
+                        <div th:text="${quiz?.questions?.size()}"/>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row m-3">
+                <h2 class="fw-bold" th:text="${quiz?.title}"/>
+                <pre class="text-truncate w-100" th:text="${quiz?.description}"/>
+            </div>
+
+            <div class="row ms-3 mb-3">
+                <div class="w-25">
+                    <a th:href="${showQuizUrl}" class="btn btn-primary" role="button" th:text="#{btn.show.quiz}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

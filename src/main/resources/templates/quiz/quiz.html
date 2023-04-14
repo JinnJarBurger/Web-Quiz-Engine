@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/form}">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Quiz Form</title>
+</head>
+<body>
+<form method="post" th:object="${quiz}" th:with="action=${quiz?.new ? 'SAVE' : 'UPDATE'}" layout:fragment="content">
+    <div class="row mb-4">
+        <h2 class="text-center fw-normal" th:switch="${quiz?.new}">
+            <th:block th:case="true" th:text="#{title.create.quiz}"/>
+            <th:block th:case="false" th:text="#{title.update.quiz}"/>
+        </h2>
+        <hr class="mt-2 mb-3 w-100"/>
+    </div>
+
+    <div class="row mb-3">
+        <label for="quiz-title" class="ps-0 form-label" th:text="#{label.title}"/>
+        <input id="quiz-title" th:field="*{title}" class="form-control" placeholder="Title"/>
+        <div th:each="error : ${#fields.errors('title')}" th:text="${error}" class="text-danger small ps-0"/>
+    </div>
+
+    <div class="row mb-3">
+        <label for="description" class="ps-0 form-control" th:text="#{label.description}"/>
+        <textarea id="description" th:field="*{description}" class="form-control" rows="4"></textarea>
+        <div th:each="error : ${#fields.errors('description')}" th:text="${error}" class="text-danger small ps-0"/>
+    </div>
+
+    <div class="row mb-3">
+        <label for="category" class="ps-0 form-label" th:text="#{label.category}"/>
+        <select id="category" th:field="*{category}" class="form-control">
+            <option value="" th:label="#{text.select.category}" class="form-control"></option>
+            <option th:each="option : ${categories}" th:value="${option}" th:text="${option}"></option>
+        </select>
+        <div th:each="error : ${#fields.errors('category')}" th:text="${error}" class="text-danger small ps-0"/>
+    </div>
+
+    <div class="row">
+        <div class="m-0 p-0">
+            <button type="submit"
+                    name="action"
+                    th:value="${action}"
+                    class="btn btn-success"
+                    th:text="${#strings.toLowerCase(action)}"/>
+
+            <button th:if="${not quiz?.new}"
+                    th:data-name="#{delete.confirmation}"
+                    type="submit"
+                    name="action"
+                    value="DELETE"
+                    class="btn btn-danger"
+                    onclick="return confirm('data-name');"
+                    th:text="#{btn.delete}"/>
+        </div>
+    </div>
+</form>
+</body>
+</html>
